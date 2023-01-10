@@ -12,10 +12,6 @@ import (
 type PcrResponse struct {
 	CreditRating int    `json:"creditRating"`
 	RiskClass    string `json:"riskClass"`
-	RiskClassKK  string `json:"riskClassKK"`
-	RiskClassRU  string `json:"riskClassRU"`
-	RiskClassEN  string `json:"riskClassEN"`
-	Color        string `json:"color"`
 	RiskCode     int    `json:"riskCode"`
 	Message      string `json:"message"`
 	Code         int    `json:"code"`
@@ -85,8 +81,10 @@ func main() {
 		//log.Print(iin + "  " + " " + " " + " ")
 
 		db.Exec(
-			"insert into pcr_response(iin, credit_rating,risk_class,risk_code,message,code) VALUES ($1,$2,$3,$4,$5,$6)", requestIin.iin,
-			pcrResponse.CreditRating, pcrResponse.RiskClass, pcrResponse.RiskCode, pcrResponse.Message, pcrResponse.Code,
+			"insert into pcr_response(iin, credit_rating,risk_class,risk_code,message,code) VALUES ($1,$2,$3,$4,$5,$6)",
+			requestIin.iin,
+			pcrResponse.CreditRating, pcrResponse.RiskClass, pcrResponse.RiskCode, pcrResponse.Message,
+			pcrResponse.Code,
 		)
 	}
 }
